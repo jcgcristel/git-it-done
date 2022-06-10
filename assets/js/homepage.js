@@ -37,7 +37,7 @@ var formSubmitHandler = function(event) {
 var displayRepos = function(repos, searchTerm) {
     // clear prev stuff
     repoContainerEl.textContent = "";
-    repoSearchTermEl.textContent = searchTerm;
+    nameInputEl.textContent = searchTerm;
 
     // check if api returned any repos
     if (repos.length === 0) {
@@ -50,9 +50,10 @@ var displayRepos = function(repos, searchTerm) {
         // format repo name
         var repoName = repos[i].owner.login + "/" + repos[i].name;
 
-        // create container for repo
-        var repoEl = document.createElement("div");
+        // create a link for each repo
+        var repoEl = document.createElement("a");
         repoEl.classList = "list-item flex-row justify-space-between align-center";
+        repoEl.setAttribute("href", `./single-repo.html?repo=${repoName}`);
         
         // create a span element to hold repo name
         var titleEl = document.createElement("span");
